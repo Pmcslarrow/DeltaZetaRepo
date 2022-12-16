@@ -1,0 +1,368 @@
+@import url("https://use.typekit.net/sja6psk.css");
+
+
+body {
+    background-color: rgb(232, 232, 232);
+    font-family: rift-soft,sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+#sigmaChiLogoImage {
+    width: 20%;
+    height: 20%;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+/* 
+#####################################################################################
+Navbar 
+#####################################################################################
+*/
+
+        .nav-bar {
+          font-size: larger;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background-color:rgb(232, 232, 232);
+          color: black;
+          padding: 0 20px;
+        }
+        
+        .nav-bar img {
+          height: 50px;
+        }
+        
+        .nav-links {
+          display: flex;
+        }
+        
+        .nav-links a {
+          color: black;
+          text-decoration: none;
+          padding: 0 20px;
+          transition: all 0.5s ease-in-out;
+        }
+        
+        .nav-links a:hover {
+          color: black;
+          transform: translateY(-7.5px);
+        }
+        
+
+
+
+
+
+/* 
+#####################################################################################
+Parallax Effects
+#####################################################################################
+*/
+
+        .parallax_1 {
+            background-image: url('../public/images/group_dodgeball.JPG');
+            height: 1000px; 
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .parallax_2 {
+            background-image: url('../public/images/soccer_match.JPG');
+            height: 700px; 
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .parallax_3 {
+            background-image: url('../public/images/single_dodgeball.JPG');
+            height: 500px; 
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+/* 
+#####################################################################################
+Sections 
+#####################################################################################
+*/
+
+        .container {
+            width:100%;
+            height:200px;
+            background-color:rgb(232, 232, 232);
+            padding-top:20px;
+            padding-left:15px;
+            padding-right:15px;
+        }
+       
+        .container a {
+          color: #00A3E0;
+        }
+
+
+        #section1, #section2, #section3 {
+            background-color:rgb(232, 232, 232);
+            font-size:80px;
+            color: #002b49;
+            font-weight: bold;
+            text-align: center;
+            float:left;
+            width:30%;
+            height:175px;
+            background-color:white;
+            border:solid black;
+            margin-left: 30px;
+        }
+
+        #section1 p, #section2 p, #section3 p{
+            color: black;
+            font-size: 18px;
+            text-align: left;
+            font-weight:500;
+            padding: 12px
+        }
+
+        #section1 u a, #section2 u a, #section3 u a{
+          position: relative;
+          top: 25px;
+        }
+
+        #valueSection p {
+          position: relative;
+          color: black;
+          font-size: 25px;
+          text-align: left;
+          font-weight:500;
+          padding: 12px;
+          left: 400px;
+          top: -600px;
+          width: 800px;
+        }
+
+        #historySection, #valueSection {
+            width: 30%;
+            height:600px;
+            background-color:rgb(232, 232, 232);
+            font-size:50px;
+            color: #002b49;
+            font-weight: bold;
+            text-align: center;
+        }
+/* 
+#####################################################################################
+Animation for values list
+#####################################################################################
+*/
+        ul {
+            padding: 0;
+            margin: 0;
+            display: block;
+            width: 250px;
+
+          }
+        
+          
+          li + li {
+            margin-top: 15px;
+          }
+          
+          @keyframes animateIn {
+            0% {
+              opacity: 0;
+              transform: scale(0.6) translateY(-8px);
+            }
+            
+            100% {
+              opacity: 1;
+            }
+          }
+
+          #courage:hover, #wisdom:hover, #integrity:hover,#highAmbition:hover, #selfControl:hover, #courtesy:hover, #fidelity:hover {
+            background-color: #002b49;
+          }
+
+          #courage, #wisdom, #integrity,#highAmbition, #selfControl, #courtesy, #fidelity {
+            display: block;
+            height: 72px;
+            width: 250px;
+            background-color: #00A3E0;
+            visibility:hidden;
+          }
+
+          #courage {
+            --animation-order: 1;
+          }
+
+          #wisdom {
+            --animation-order: 2;
+          }
+
+          #integrity {
+            --animation-order: 3;
+          }
+
+          #highAmbition {
+            --animation-order: 4;
+          }
+
+          #selfControl{
+            --animation-order: 5;
+          }
+
+          #courtesy {
+            --animation-order: 6;
+          }
+
+          #fidelity {
+            --animation-order: 7;
+          }
+
+
+
+/* 
+#####################################################################################
+Animation for the Friendship Justice and Learning 
+#####################################################################################
+*/
+    @keyframes slide-left {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    @keyframes slide-middle {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    @keyframes slide-right {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    .slide-left {
+      animation: slide-left 1s ease-in-out;
+    }
+
+    .slide-middle {
+      animation: slide-middle 1s ease-in-out;
+    }
+
+    .slide-right {
+      animation: slide-right 1s ease-in-out;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* The animation class for the nav bar */
+    .fade-in {
+      animation: fade-in 2s ease-in-out;
+    }
+
+    .container div {
+      visibility: hidden;
+    }
+
+
+
+
+/* 
+#####################################################################################
+Footer (credit to: https://codepen.io/alvarotrigo/pen/vYRRxje)
+#####################################################################################
+*/
+
+.container{
+  max-width: 1170px;
+  margin:auto;
+}
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+ul{
+  list-style: none;
+}
+.footer{
+  background-color:#002b49;
+  padding: 0px;
+}
+.footer-col{
+   width: 15%;
+   padding: 10px;
+}
+.footer-col h4{
+  font-size: 18px;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+}
+.footer-col h4::before{
+  content: '';
+  position: absolute;
+  left:0;
+  bottom: -10px;
+  background-color:#00A3E0;
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
+}
+.footer-col ul li:not(:last-child){
+  margin-bottom: 10px;
+}
+.footer-col ul li a{
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  color: #bbbbbb;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+  color: #ffffff;
+  padding-left: 8px;
+}
+.footer-col .social-links a{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255,255,255,0.2);
+  margin:0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+  color: #24262b;
+  background-color: #ffffff;
+}
+
