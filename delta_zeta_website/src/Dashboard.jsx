@@ -1,7 +1,11 @@
+import NavBar from '../src/Navbar'
+
+
 function Dashboard()
 {
     return (
-        <h1>Dashboard</h1>
+        <NavBar title="Dashboard"></NavBar>
+
     )
 }
 

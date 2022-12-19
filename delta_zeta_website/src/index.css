@@ -2,7 +2,7 @@
 
 
 body {
-    background-color: rgb(232, 232, 232);
+    background-color: white;
     font-family: rift-soft,sans-serif;
     font-weight: 300;
     font-style: normal;
@@ -37,7 +37,7 @@ Navbar
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background-color:rgb(232, 232, 232);
+          background-color:white;
           color: black;
           padding: 0 20px;
         }
@@ -62,6 +62,10 @@ Navbar
           transform: translateY(-7.5px);
         }
         
+        #pageHeader {
+          font-size: 80px;
+          font-weight: 500;
+        }
 
 
 
@@ -83,7 +87,7 @@ Parallax Effects
         }
 
         .parallax_2 {
-            background-image: url('../public/images/soccer_match.JPG');
+            background-image: url('../public/images/SlipnSlide/IMG_2454.JPG');
             height: 700px; 
             background-attachment: fixed;
             background-position: center;
@@ -110,7 +114,7 @@ Sections
         .container {
             width:100%;
             height:200px;
-            background-color:rgb(232, 232, 232);
+            background-color:white;
             padding-top:20px;
             padding-left:15px;
             padding-right:15px;
@@ -163,7 +167,7 @@ Sections
         #historySection, #valueSection {
             width: 30%;
             height:600px;
-            background-color:rgb(232, 232, 232);
+            background-color:white;
             font-size:50px;
             color: #002b49;
             font-weight: bold;

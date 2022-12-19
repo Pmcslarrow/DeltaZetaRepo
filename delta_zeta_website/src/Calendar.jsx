@@ -1,14 +1,26 @@
+import NavBar from '../src/Navbar'
+import { useEffect, useState } from 'react'
+
 function Calendar()
 {
+    const [calendarValues, setCalendarValues] = useState([])
+
+    // On load get calendar data from the API
+    useEffect(() => {
+        fetch("http://localhost:3033/calendar")
+            .then((res) => res.json())
+            .then((data) => {
+                setCalendarValues(data)
+            })
+    }, [])
+
+
     return (
         <>
-            <h1>Calendar</h1>
+            <NavBar title="Calendar"></NavBar>
 
-            <h1>Next Steps:</h1>
             <ol>
-                <li>Create a new table in the database for calendar information</li>
-                <li>Start the dashboard section and allow the user the ability to create new calendar events</li>
-                <li>Once calendar events exist in the database, fetch the data from the database and display it all on this page</li>
+                <li>Insert the calendarValues here</li>
             </ol>
         </>
     )

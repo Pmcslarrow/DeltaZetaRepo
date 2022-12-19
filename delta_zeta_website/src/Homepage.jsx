@@ -1,18 +1,19 @@
 import './index.css'
 import NavBar from './Navbar'
+import { FaInstagram } from "react-icons/fa";
 
 function FriendshipJusticeLearning()
 {
     return (
         <div className='container'>
             <div id='section1'>
-                <u><a href="https://sigmachi.org/home/what-is-sigma-chi/timeless-principles/" target="_blank">Friendship</a></u>
+                <u><a href="https://sigmachi.org/home/what-is-sigma-chi/timeless-principles/" target="_blank"  rel="noreferrer">Friendship</a></u>
             </div>
             <div id='section2'>
-                <u><a href="https://sigmachi.org/home/what-is-sigma-chi/timeless-principles/" target="_blank">Justice</a></u>
+                <u><a href="https://sigmachi.org/home/what-is-sigma-chi/timeless-principles/" target="_blank"  rel="noreferrer">Justice</a></u>
             </div>
             <div id='section3'>
-                <u><a href="https://sigmachi.org/home/what-is-sigma-chi/timeless-principles/" target="_blank">Learning</a></u>
+                <u><a href="https://sigmachi.org/home/what-is-sigma-chi/timeless-principles/" target="_blank"  rel="noreferrer">Learning</a></u>
             </div>
         </div>
     )
@@ -130,7 +131,9 @@ function FooterSection()
                 <div className="footer-col">
                 <h4>Contact</h4>
                 <ul>
-                    <li><a href="#">Form</a></li>
+                    <li><a href="/form">Form</a></li>
+                    <li><a href="/donate">Donate</a></li>
+
                 </ul>
                 </div>
 
@@ -146,10 +149,7 @@ function FooterSection()
                 <div className="footer-col">
                 <h4>follow us</h4>
                 <div className="social-links">
-                    <a href="#"><i>Insta</i></a>
-                    <a href="#"><i>Twitter</i></a>
-                    <a href="#"><i>MySpace</i></a>
-                    <a href="#"><i>Etc..</i></a>
+                    <a href="https://www.instagram.com/sigmachi_wu/?hl=en"><i><FaInstagram/></i></a>
                 </div>
                 </div>
             </div>
@@ -187,8 +187,8 @@ function Homepage()
 
         if (y >= 1500)
         {
-            var elements = document.querySelectorAll('.valueSectionClass ul li');
-            elements.forEach(el => el.style.cssText = "animation-name: animateIn; animation-duration: 350ms; animation-delay: calc(var(--animation-order) * 100ms); animation-fill-mode: both; animation-timing-function: ease-in-out; visibility: visible;")
+            var element = document.querySelectorAll('.valueSectionClass ul li');
+            element.forEach(el => el.style.cssText = "animation-name: animateIn; animation-duration: 350ms; animation-delay: calc(var(--animation-order) * 100ms); animation-fill-mode: both; animation-timing-function: ease-in-out; visibility: visible;")
         }
     })
 
@@ -196,7 +196,7 @@ function Homepage()
     /* Returns the layout of the homepage */
     return (
         <>
-            <NavBar/>
+            <NavBar title="Delta Zeta Chapter"/>
                 <div className='parallax_1'></div>
             <FriendshipJusticeLearning/>
                 <div className='parallax_2'></div>   
