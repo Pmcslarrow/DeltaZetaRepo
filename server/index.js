@@ -1,6 +1,5 @@
 // index.js    server for the delta zeta website
 const express = require("express")
-const app = express()
 const dotenv = require('dotenv');
 dotenv.config();
 const bodyParser = require("body-parser")
@@ -9,13 +8,13 @@ const cors = require("cors")
 const mongoose = require('mongoose')
 const CONNECTION_URI = process.env.CONNECTION_URI
 
-
+const app = express()
 // Middleware
 app.use(cors())
-app.use(bodyParser.json({limit: "30mb", extended:true}))
+app.use(bodyParser.json()) // {limit: "30mb", extended:true}  
 app.use(express.json())
 app.use(express.static(__dirname + "/public")); 
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true })) // Middleware allows POST requests to show form fields in req.body
 
 
 // creates a method for all strings that will remove existing brackets (< > ... )
@@ -40,8 +39,11 @@ mongoose.connect(CONNECTION_URI)
         console.log(err.message)
     })
 
-const CalendarSchema = require('./public/db')
-const Calendar = CalendarSchema.Calendar;
+const Database = require('./public/db')
+const Calendar = Database.Calendar;
+const Users = Database.Users;
+
+
 
 /*
 const input = Calendar({
@@ -54,6 +56,12 @@ const input = Calendar({
 
 input.save()
 */
+app.get("/databaseUserInformation" , (req, res) => {
+    Users.find({}).exec()
+        .then((data) => {res.json(data)})
+        .catch((err) => {res.send(err.message)})
+})
+
 
 app.get("/calendar", (req, res) => {
     Calendar.find({}).exec()

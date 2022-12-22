@@ -1,4 +1,4 @@
-import NavBar from '../src/Navbar'
+import NavBar from './Navbar'
 import { useEffect, useState } from 'react'
 
 function Calendar()

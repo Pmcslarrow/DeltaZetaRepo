@@ -19,7 +19,7 @@ function App()
         
         <Router>
             <Routes>
-                <Route path="*" element={<Homepage/>}></Route>
+                <Route path="/" element={<Homepage/>}></Route>
                 <Route path="/calendar" exact element={<Calendar/>}></Route>
                 <Route path="/dashboard" exact element={<Dashboard/>}></Route>
                 <Route path="/form" exact element={<Form/>}></Route>
