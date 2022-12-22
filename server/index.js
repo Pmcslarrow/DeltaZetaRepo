@@ -3,9 +3,12 @@ const express = require("express")
 const dotenv = require('dotenv');
 dotenv.config();
 const bodyParser = require("body-parser")
+const limiter = require("express-rate-limit")
 const port = process.env.PORT || 5000
 const cors = require("cors")
 const mongoose = require('mongoose')
+const helmet = require('helmet')
+session = require('express-session')
 const CONNECTION_URI = process.env.CONNECTION_URI
 
 const app = express()
@@ -15,19 +18,15 @@ app.use(bodyParser.json()) // {limit: "30mb", extended:true}
 app.use(express.json())
 app.use(express.static(__dirname + "/public")); 
 app.use(express.urlencoded({ extended: true })) // Middleware allows POST requests to show form fields in req.body
+app.use(helmet());
 
 
-// creates a method for all strings that will remove existing brackets (< > ... )
-String.prototype.escape = function() {
-    var tagsToReplace = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;'
-    };
-    return this.replace(/[&<>]/g, function(tag) {
-        return tagsToReplace[tag] || tag;
-    });
-};
+// Defines the rate limiter
+const registerLimiter = limiter({
+    windowMs: 10000,
+    max: 5,
+})
+
 
 // Database Setup
 mongoose.set("strictQuery", true);
@@ -62,7 +61,7 @@ function validateUserLogin(userJson, password, callback)
 
 
 
-app.post("/api/login", (req, res) => {
+app.post("/api/login", registerLimiter, (req, res) => {
     const EMAIL = req.body.email
     const PASSWORD = req.body.password
     
@@ -80,14 +79,13 @@ app.post("/api/login", (req, res) => {
     
 })
 
-app.get("/api/databaseUsers" , (req, res) => {
+app.get("/api/databaseUsers", registerLimiter,(req, res) => {
     Users.find({}).exec()
         .then((data) => {res.json(data)})
         .catch((err) => {res.send(err.message)})
 })
 
-
-app.get("/api/calendar", (req, res) => {
+app.get("/api/calendar", registerLimiter, (req, res) => {
     Calendar.find({}).exec()
         .then((data) => {res.json(data)})
         .catch((err) => {res.send(err.message)})

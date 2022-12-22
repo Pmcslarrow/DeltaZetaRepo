@@ -1,12 +1,15 @@
 import NavBar from './Navbar'
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import Dashboard from './Dashboard'
 import './index.css'
+
 
 function Login () {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [auth, setAuth] = useState(false)
     const navigate = useNavigate();
 
 
@@ -20,6 +23,7 @@ function Login () {
 
     async function handleSubmit(event) {
         event.preventDefault();
+
         const data = {email, password}
         const url = "http://localhost:3033/api/login"
 
@@ -36,8 +40,7 @@ function Login () {
         if (response.status === "Success")
         {
             console.log("Success")
-            localStorage.setItem("authenticationState", true);
-            navigate("/dashboard")
+            setAuth(true)
         } else {
             return
         }
@@ -47,6 +50,11 @@ function Login () {
 
     return (
         <>
+        {
+            auth ? (
+                <Dashboard/>
+            ) : (
+                <>
             <NavBar title="Login"></NavBar>
             <div className="login-form">
                 <form onSubmit={handleSubmit}>
@@ -57,6 +65,9 @@ function Login () {
                     <button type="submit" id="submitButton">Log In</button>
                 </form>
             </div>
+            </>
+            )
+        }
         </>
     );
 }
