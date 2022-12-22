@@ -142,7 +142,7 @@ function FooterSection()
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/calendar">Calendar</a></li>
-                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/login">Dashboard</a></li>
                 </ul>
                 </div>
 

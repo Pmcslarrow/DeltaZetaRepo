@@ -65,6 +65,7 @@ Navbar
         #pageHeader {
           font-size: 80px;
           font-weight: 500;
+          transform: translate(-25%);
         }
 
 
@@ -370,3 +371,45 @@ ul{
   background-color: #ffffff;
 }
 
+
+/* 
+#####################################################################################
+Login Page
+#####################################################################################
+*/
+
+.login-form label {
+  font-size: 16px;
+  color: #333;
+}
+
+.login-form input {
+  position: absolute;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#passwordID {
+  transform: translate(-50%, 25px);
+}
+
+.login-form button {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+
+}

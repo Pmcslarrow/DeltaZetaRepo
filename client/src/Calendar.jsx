@@ -7,7 +7,7 @@ function Calendar()
 
     // On load get calendar data from the API
     useEffect(() => {
-        fetch("http://localhost:3033/calendar")
+        fetch("http://localhost:3033/api/calendar")
             .then((res) => res.json())
             .then((data) => {
                 setCalendarValues(data)

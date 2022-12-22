@@ -6,7 +6,7 @@ function Dashboard()
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3033/databaseUserInformation")
+        fetch("http://localhost:3033/api/databaseUsers")
             .then((res) => res.json())
             .then((data) => {
                 setUsers(data)

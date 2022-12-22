@@ -9,7 +9,7 @@ function NavBar(props) {
           <div className="nav-links">
             <a href="/">Home</a>
             <a href="/calendar">Calendar</a>
-            <a href="/dashboard">Dashboard</a>
+            <a href="/login">Dashboard</a>
           </div>
       </div>
     );

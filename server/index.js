@@ -44,26 +44,50 @@ const Calendar = Database.Calendar;
 const Users = Database.Users;
 
 
+var crypto = require('crypto');
+function validateUserLogin(userJson, password, callback)
+{
+    const hash = crypto.createHash('sha256')
+    const attemptedPassword = hash.update(password).digest('hex')
+    const actualPassword = userJson.Password
 
-/*
-const input = Calendar({
-    event: "Initiation",
-    date: "2023-01-01",
-    start_time: "1:00am",
-    end_time: "6:00am",
-    timezone: "PST"
+    if (attemptedPassword === actualPassword)
+    {
+        callback.send({status: "Success"})
+    } else {
+        callback.send({status: "Failure"})
+    }
+
+}
+
+
+
+app.post("/api/login", (req, res) => {
+    const EMAIL = req.body.email
+    const PASSWORD = req.body.password
+    
+    Users.findOne({Email: EMAIL}, function (err, result) {
+        if (err) {
+            console.log(err.message) 
+            return null
+        } else {
+            if (result !== null) { validateUserLogin(result, PASSWORD, res) }
+            else{
+                res.status(404).end("Failed")
+            }
+        }
+    })
+    
 })
 
-input.save()
-*/
-app.get("/databaseUserInformation" , (req, res) => {
+app.get("/api/databaseUsers" , (req, res) => {
     Users.find({}).exec()
         .then((data) => {res.json(data)})
         .catch((err) => {res.send(err.message)})
 })
 
 
-app.get("/calendar", (req, res) => {
+app.get("/api/calendar", (req, res) => {
     Calendar.find({}).exec()
         .then((data) => {res.json(data)})
         .catch((err) => {res.send(err.message)})
