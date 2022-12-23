@@ -79,11 +79,37 @@ app.post("/api/login", registerLimiter, (req, res) => {
     
 })
 
+
 app.get("/api/databaseUsers", registerLimiter,(req, res) => {
     Users.find({}).exec()
         .then((data) => {res.json(data)})
         .catch((err) => {res.send(err.message)})
 })
+
+app.post("/api/databaseUsers", (req, res) => {
+    const email = req.body.email
+    const name = req.body.name
+    const password = req.body.password
+    Users.find({ Email: email}).exec()
+        .then((data) => {
+            if (Object.keys(data).length === 0)
+            {
+                Users.insertMany({ Name: name, Email: email, Password: password })
+                res.status(200).end("Added a new user")
+            } else {
+                res.end("Invalid email")
+            }
+        })
+})
+
+app.delete("/api/databaseUsers/delete", (req, res) => {
+    const user_id = req.body.userData
+    Users.deleteOne({ _id : user_id})
+        .then((data) => {res.status(200).end("User Deleted")})
+        .catch((err) => res.status(404).end(err.message))
+})
+
+
 
 app.get("/api/calendar", registerLimiter, (req, res) => {
     Calendar.find({}).exec()

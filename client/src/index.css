@@ -412,3 +412,77 @@ Login Page
   transform: translate(-50%);
 
 }
+
+
+/* 
+#####################################################################################
+Dashboard Page
+#####################################################################################
+*/
+
+
+/* Popup Styling */
+.popWrapper {
+  border:1px solid black;
+  width:500px;
+  height:400px;
+  position: relative;
+  left:20%;
+  top: -65px;
+  transform:translate(-50%);
+  background-color: #ff8164;
+}
+
+#formSubmitButton {
+  font-size: larger;
+  position: relative;
+  left: 350px;
+  top: -20px;
+}
+
+/* New User Button */
+#newUserButton {
+  position: absolute;
+  left: 25px;
+  top: 50px;
+  font-size: large;
+}
+
+/* Table Styling */
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.App table {
+  position: relative;
+  top: 100px;
+  border: 2px solid black;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.deleteButton {
+  background-color: rgba(255, 74, 74, 0.728);
+}
+
+
+/* Form Styling */
+.nameClass, .ageClass, .emailClass, .passwordClass {
+  border: 1px solid black;
+  display: block;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 7.5px;
+}
+
+.App {
+  position: relative;
+  top: 100px;
+  left: 10%;
+}
