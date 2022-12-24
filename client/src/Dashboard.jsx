@@ -4,7 +4,40 @@ import './index.css';
 import Popup from "./Popup"
 import axios from 'axios';
 
+/* 
+#####################################################################################
+Calendar System Component
+#####################################################################################
+*/
+function CalendarSystem(){
+  return (
+    <>
+    <div className="App">
+        <h1>Calendar System:</h1>
+    </div>
+    </>
+  )
+}
 
+/* 
+#####################################################################################
+Image Selector Component
+#####################################################################################
+*/
+function ImageSelector(){
+  return (
+    <div className="App">
+        <h1>Image Selector:</h1>
+    </div>
+  )
+}
+
+
+/* 
+#####################################################################################
+Dashboard Component
+#####################################################################################
+*/
 function Dashboard() {
   const [userList, setUsers] = useState([])
   const [newUserButtonIsClicked, setButtonState] = useState(false)
@@ -26,6 +59,7 @@ function Dashboard() {
       getUsers()
   }
 
+  // Toggles the New User button color and text
   function togglePopupState(){
     let button = document.getElementById("newUserButton");
     if (newUserButtonIsClicked) {
@@ -37,7 +71,7 @@ function Dashboard() {
     }
   }
   
-
+  // Fetch the users in the database
   useEffect(() => {
     try {
       getUsers()
@@ -62,11 +96,14 @@ function Dashboard() {
     </tr>
   );
 
-  return (
-    <>
-      <NavBar title="Dashboard" />
+  function UserManagement()
+  {
+    return (
+      <>
       <div className="App">
         
+
+        <h1>User Management:</h1>
         <button id="newUserButton" onClick={() => {setButtonState(!newUserButtonIsClicked)}}>New User</button>
 
           <table>
@@ -86,6 +123,27 @@ function Dashboard() {
 
           {newUserButtonIsClicked ? <Popup getUsers={getUsers} setButtonState={setButtonState} newUserButtonIsClicked={newUserButtonIsClicked}></Popup> : ""}
       </div>
+      </>
+    )
+  }
+
+
+
+/* 
+#####################################################################################
+Dashboard layout
+#####################################################################################
+*/
+  return (
+    <>
+      <NavBar title="Dashboard" />
+      <UserManagement />
+      <br />
+      <br />
+      <CalendarSystem />
+      <br />
+      <br />
+      <ImageSelector />
       
     </>
   );

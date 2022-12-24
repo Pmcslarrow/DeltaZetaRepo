@@ -2,6 +2,27 @@ import {React, useState} from 'react'
 import axios from 'axios'
 import "./index.css"
 
+
+
+
+
+async function sha256(message) {
+    // encode as UTF-8
+    const msgBuffer = new TextEncoder().encode(message);                    
+
+    // hash the message
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+
+    // convert ArrayBuffer to Array
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+    // convert bytes to hex string                  
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
+
+
+
 function FormInput(props) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -12,12 +33,14 @@ function FormInput(props) {
 
 
     // Posting new user data to database
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
+        let pass = await sha256(password)
+        console.log(pass)
         let data = {
             name,
             email,
-            password
+            pass
         }
         //Uses regex to validate email
         if (validEmail.test(email))

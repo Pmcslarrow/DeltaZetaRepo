@@ -424,12 +424,11 @@ Dashboard Page
 /* Popup Styling */
 .popWrapper {
   border:1px solid black;
-  width:500px;
+  width:600px;
   height:400px;
   position: relative;
-  left:20%;
-  top: -65px;
-  transform:translate(-50%);
+  left:50%;
+  transform:translate(-50%, -75%);
   background-color: #ff8164;
 }
 
@@ -465,6 +464,9 @@ tr:nth-child(even) {
   border: 2px solid black;
   overflow-y: scroll;
   position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 .deleteButton {
@@ -483,6 +485,6 @@ tr:nth-child(even) {
 
 .App {
   position: relative;
-  top: 100px;
-  left: 10%;
+  background-color: rgba(139, 139, 139, 0.2);
+  height: 650px;
 }

@@ -89,7 +89,7 @@ app.get("/api/databaseUsers", registerLimiter,(req, res) => {
 app.post("/api/databaseUsers", (req, res) => {
     const email = req.body.email
     const name = req.body.name
-    const password = req.body.password
+    const password = req.body.pass
     Users.find({ Email: email}).exec()
         .then((data) => {
             if (Object.keys(data).length === 0)
