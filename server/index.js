@@ -59,7 +59,11 @@ function validateUserLogin(userJson, password, callback)
 
 }
 
-
+/* 
+#####################################################################################
+Routes
+#####################################################################################
+*/
 
 app.post("/api/login", registerLimiter, (req, res) => {
     const EMAIL = req.body.email
@@ -78,7 +82,6 @@ app.post("/api/login", registerLimiter, (req, res) => {
     })
     
 })
-
 
 app.get("/api/databaseUsers", registerLimiter,(req, res) => {
     Users.find({}).exec()
@@ -115,6 +118,10 @@ app.get("/api/calendar", registerLimiter, (req, res) => {
     Calendar.find({}).exec()
         .then((data) => {res.json(data)})
         .catch((err) => {res.send(err.message)})
+})
+
+app.post("/api/calendar", (req, res) => {
+    console.log(req.body)
 })
 
 

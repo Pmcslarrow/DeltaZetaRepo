@@ -10,10 +10,60 @@ Calendar System Component
 #####################################################################################
 */
 function CalendarSystem(){
+  const [formData, setFormData] = useState({})
+
+  function validUserInputs(data)
+  {
+    const reg = new RegExp(/[<>&'"\\/!@#$%=*+{}]/)
+    if (reg.test(data['event']) || reg.test(data['timezone']))
+    {
+      return false
+    }
+    return true
+  }
+
+  
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = formData
+    const url = "localhost:3033/api/"
+    if ( validUserInputs(data) )
+    {
+      console.log("START WORKING HERE INSIDE dashboard.jsx")
+    } else {
+      console.log("Invalid Input (Don't use any characters other than letters)")
+    }
+    
+  }
+
   return (
     <>
     <div className="App">
         <h1>Calendar System:</h1>
+
+        <form onSubmit={handleSubmit}>
+          <div id="calendarWrapper">
+              <label>Event:</label>
+                  <input type="text" name="event" placeholder="Event name" onChange={handleChange} required/>
+              <label>Date:</label>
+                  <input type="date" name="date" placeholder="Date" onChange={handleChange} required/>
+              <label>Start time:</label>
+                  <input type="time" name="startTime" placeholder="Start time" onChange={handleChange} required/>
+              <label>End time:</label>
+                  <input type="time" name="endTime" placeholder="End time" onChange={handleChange} required/>
+              <label>Timezone:</label>
+                  <input type="text" name="timezone" placeholder="Timezone" onChange={handleChange} required/>
+
+              <button type="submit">Submit</button>
+          </div>
+        </form>
     </div>
     </>
   )

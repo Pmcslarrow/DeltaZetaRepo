@@ -14,6 +14,16 @@ function Login () {
     const [auth, setAuth] = useState(false)   // SWITCH THIS BACK LATER TO FALSE
     const navigate = useNavigate();
 
+    function validUserInputs(data)
+    {
+        const reg = new RegExp(/[<>&'"\\/#%=*+{}]/)
+        if (reg.test(data.email) || reg.test(data.password))
+        {
+            return false
+        }
+        return true
+    }
+
 
     function handleEmailChange(event) {
         setEmail(event.target.value);
@@ -29,22 +39,29 @@ function Login () {
         const data = {email, password}
         const url = "http://localhost:3033/api/login"
 
-        const rawResponse = await fetch(url, {
-            method: 'POST',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        const response = await rawResponse.json()
-
-        if (response.status === "Success")
+        if (validUserInputs(data))
         {
-            setAuth(true)
+            const rawResponse = await fetch(url, {
+                method: 'POST',
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            const response = await rawResponse.json()
+    
+            if (response.status === "Success")
+            {
+                setAuth(true)
+            } else {
+                return
+            }
         } else {
-            return
+            console.log("Invalid User Input")
         }
+
+        
        
     }
     
