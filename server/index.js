@@ -1,4 +1,5 @@
-// index.js    server for the delta zeta website
+// CONSTANTS & MIDDLEWARE
+/********************************************************************************************** */
 const express = require("express")
 const dotenv = require('dotenv');
 dotenv.config();
@@ -10,23 +11,14 @@ const mongoose = require('mongoose')
 const helmet = require('helmet')
 session = require('express-session')
 const CONNECTION_URI = process.env.CONNECTION_URI
-
 const app = express()
-// Middleware
 app.use(cors())
 app.use(bodyParser.json()) // {limit: "30mb", extended:true}  
 app.use(express.json())
 app.use(express.static(__dirname + "/public")); 
 app.use(express.urlencoded({ extended: true })) // Middleware allows POST requests to show form fields in req.body
 app.use(helmet());
-
-
-// Defines the rate limiter
-const registerLimiter = limiter({
-    windowMs: 10000,
-    max: 5,
-})
-
+/********************************************************************************************** */
 
 // Database Setup
 mongoose.set("strictQuery", true);
@@ -59,12 +51,40 @@ function validateUserLogin(userJson, password, callback)
 
 }
 
+
+/********************************************************************************************** */
+// Defines the rate limiter
+const registerLimiter = limiter({
+    windowMs: 10000,
+    max: 5,
+})
+
+// A function that changes 24hour time to 12hour
+function switchTime(time)
+{
+    let startHour = time.substring(0,2)
+    let startMinutes = time.substring(3,5)
+    let timeOfDay = undefined
+    if (parseInt(startHour) >= 12)
+    {
+        timeOfDay = "pm"
+    } else {
+        timeOfDay = "am"
+    }
+    let newHour = (parseInt(startHour) % 12).toString()
+    const result = newHour + ":" + startMinutes + timeOfDay
+    return result
+}
+/********************************************************************************************** */
+
+
 /* 
 #####################################################################################
 Routes
 #####################################################################################
 */
 
+/* Login system functionality */
 app.post("/api/login", registerLimiter, (req, res) => {
     const EMAIL = req.body.email
     const PASSWORD = req.body.password
@@ -80,13 +100,17 @@ app.post("/api/login", registerLimiter, (req, res) => {
             }
         }
     })
-    
 })
-
+/********************************************************************************************** */
+/* Users functionality */
 app.get("/api/databaseUsers", registerLimiter,(req, res) => {
-    Users.find({}).exec()
+    const security = req.headers.authentication
+    if (security === "SIGMA_CHI_TOKEN")
+    {
+        Users.find({}).exec()
         .then((data) => {res.json(data)})
         .catch((err) => {res.send(err.message)})
+    }
 })
 
 app.post("/api/databaseUsers", (req, res) => {
@@ -111,9 +135,9 @@ app.delete("/api/databaseUsers/delete", (req, res) => {
         .then((data) => {res.status(200).end("User Deleted")})
         .catch((err) => res.status(404).end(err.message))
 })
+/********************************************************************************************** */
 
-
-
+/* Calendar functionality */
 app.get("/api/calendar", registerLimiter, (req, res) => {
     Calendar.find({}).exec()
         .then((data) => {res.json(data)})
@@ -121,8 +145,16 @@ app.get("/api/calendar", registerLimiter, (req, res) => {
 })
 
 app.post("/api/calendar", (req, res) => {
-    console.log(req.body)
+    const event = req.body.event
+    const date = req.body.date
+    const start_time = switchTime(req.body.startTime)
+    const end_time = switchTime(req.body.endTime)
+    const timezone = req.body.timezone
+
+    Calendar.insertMany({event, date, start_time, end_time, timezone})
+    res.status(200).send("Added a new event to the calendar")
+    
 })
+/********************************************************************************************** */
 
-
-
+  

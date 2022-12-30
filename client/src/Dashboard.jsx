@@ -4,6 +4,7 @@ import './index.css';
 import Popup from "./Popup"
 import axios from 'axios';
 
+
 /* 
 #####################################################################################
 Calendar System Component
@@ -30,13 +31,16 @@ function CalendarSystem(){
     });
   }
 
-  const handleSubmit = (event) => {
+  // If the data in the form is submitted correctly then it will push it to the database here
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = formData
-    const url = "localhost:3033/api/"
+    const url = "/api/calendar"
     if ( validUserInputs(data) )
     {
-      console.log("START WORKING HERE INSIDE dashboard.jsx")
+      axios.post(url, data)
+        .then((response) => {console.log(response)})
+        .catch((err) => {console.log(err)})
     } else {
       console.log("Invalid Input (Don't use any characters other than letters)")
     }
@@ -95,7 +99,9 @@ function Dashboard() {
   // Gets the users from the API and then sets the state in userList
   function getUsers()
   {
-    fetch("http://localhost:3033/api/databaseUsers")
+    fetch("http://localhost:3033/api/databaseUsers",{
+      headers: {Authentication: 'SIGMA_CHI_TOKEN'}
+    })
       .then((res) => res.json())
       .then((data) => setUsers(data))
   }
