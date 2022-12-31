@@ -478,7 +478,7 @@ tr:nth-child(even) {
 .nameClass, .ageClass, .emailClass, .passwordClass {
   border: 1px solid black;
   display: block;
-  margin: 15px;
+  margin: 10px;
   padding: 15px;
   border-radius: 7.5px;
 }
@@ -487,4 +487,21 @@ tr:nth-child(even) {
   position: relative;
   background-color: rgba(139, 139, 139, 0.2);
   height: 650px;
+}
+
+
+#calendarValues {
+  position: absolute;
+  top: 50px;
+  left: 300px;
+  width: 70%;
+  height: 600px;
+  border-radius: 10px;
+  background-color: #00A3E0;
+  overflow: scroll;
+}
+
+#client-calendar {
+  font-size: larger;
+  width: 100%;
 }

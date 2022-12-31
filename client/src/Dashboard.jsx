@@ -12,6 +12,18 @@ Calendar System Component
 */
 function CalendarSystem(){
   const [formData, setFormData] = useState({})
+  const [calendarList, setCalendarList] = useState([])
+
+  function getCalendarValues()
+  {
+    fetch("http://localhost:3033/api/calendar")
+      .then((res) => res.json())
+      .then((data) => setCalendarList(data))
+  }
+
+  useEffect(() => {
+    getCalendarValues()
+  }, [])
 
   function validUserInputs(data)
   {
@@ -39,13 +51,47 @@ function CalendarSystem(){
     if ( validUserInputs(data) )
     {
       axios.post(url, data)
-        .then((response) => {console.log(response)})
+        .then((response) => {
+            console.log(response)
+            document.getElementById("eventId").value = ""
+            document.getElementById("locationId").value = ""
+            document.getElementById("dateId").value = ""
+            document.getElementById("startId").value = ""
+            document.getElementById("endId").value = ""
+            document.getElementById("timezoneId").value = ""
+            getCalendarValues()
+      })
         .catch((err) => {console.log(err)})
     } else {
       console.log("Invalid Input (Don't use any characters other than letters)")
     }
-    
   }
+
+  // Deletes the calendar event from the database
+  function deleteCalendarEvent(id)
+  {
+    axios.delete("http://localhost:3033/api/calendar", { data : { userData: id}})
+        .then((resp) => {console.log(resp)})
+        .catch((err) => {console.log("Failed to delete user [-]")})
+      getCalendarValues()
+
+  }
+
+  // Creates DOM objects for calendar values from database
+  const calendarListItems = calendarList.map((event, i) =>
+    <tr key={i}>
+      <td>{event.event}</td>
+      <td>{event.location}</td>
+      <td>{event.date}</td>
+      <td>{event.start_time}</td>
+      <td>{event.end_time}</td>
+      <td>{event.timezone}</td>
+      <td><input id={event._id} type="submit" value="X" onClick={(event) => { deleteCalendarEvent(event.target.id)}}/></td>
+    </tr>
+  );
+
+
+
 
   return (
     <>
@@ -55,37 +101,50 @@ function CalendarSystem(){
         <form onSubmit={handleSubmit}>
           <div id="calendarWrapper">
               <label>Event:</label>
-                  <input type="text" name="event" placeholder="Event name" onChange={handleChange} required/>
+                  <input type="text" name="event" placeholder="Event name" id="eventId" className="nameClass" onChange={handleChange} required/>
+              <label>Location:</label>
+                <input type="text" name="location" placeholder="Location name" id="locationId" className="nameClass" onChange={handleChange} required/>
+            
               <label>Date:</label>
-                  <input type="date" name="date" placeholder="Date" onChange={handleChange} required/>
+                  <input type="date" name="date" placeholder="Date" id="dateId" className="nameClass" onChange={handleChange} required/>
               <label>Start time:</label>
-                  <input type="time" name="startTime" placeholder="Start time" onChange={handleChange} required/>
+                  <input type="time" name="startTime" placeholder="Start time" id="startId" className="nameClass" onChange={handleChange} required/>
               <label>End time:</label>
-                  <input type="time" name="endTime" placeholder="End time" onChange={handleChange} required/>
+                  <input type="time" name="endTime" placeholder="End time" id="endId" className="nameClass" onChange={handleChange} required/>
               <label>Timezone:</label>
-                  <input type="text" name="timezone" placeholder="Timezone" onChange={handleChange} required/>
+                  <input type="text" name="timezone" placeholder="Timezone" id="timezoneId" className="nameClass" onChange={handleChange} required/>
 
               <button type="submit">Submit</button>
           </div>
         </form>
+
+
+
+        <div id="calendarValues">
+            <h1>Current Values:</h1>
+
+            <table>
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Timezone</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {calendarListItems}
+            </tbody>
+          </table>
+
+        </div>
     </div>
     </>
   )
 }
-
-/* 
-#####################################################################################
-Image Selector Component
-#####################################################################################
-*/
-function ImageSelector(){
-  return (
-    <div className="App">
-        <h1>Image Selector:</h1>
-    </div>
-  )
-}
-
 
 /* 
 #####################################################################################
@@ -198,9 +257,6 @@ Dashboard layout
       <br />
       <CalendarSystem />
       <br />
-      <br />
-      <ImageSelector />
-      
     </>
   );
 }

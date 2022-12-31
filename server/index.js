@@ -146,15 +146,23 @@ app.get("/api/calendar", registerLimiter, (req, res) => {
 
 app.post("/api/calendar", (req, res) => {
     const event = req.body.event
+    const location = req.body.location
     const date = req.body.date
     const start_time = switchTime(req.body.startTime)
     const end_time = switchTime(req.body.endTime)
     const timezone = req.body.timezone
 
-    Calendar.insertMany({event, date, start_time, end_time, timezone})
+    Calendar.insertMany({event, location, date, start_time, end_time, timezone})
     res.status(200).send("Added a new event to the calendar")
-    
 })
+
+app.delete("/api/calendar", (req, res) => {
+    const calendar_id = req.body.userData
+    Calendar.deleteOne({ _id : calendar_id})
+        .then((data) => {res.status(200).end("User Deleted")})
+        .catch((err) => res.status(404).end(err.message))
+})
+
 /********************************************************************************************** */
 
   

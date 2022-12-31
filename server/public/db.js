@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const calendar = new mongoose.Schema({
     event: String,
+    location: String,
     date: Date,
     start_time: String,
     end_time: String,
