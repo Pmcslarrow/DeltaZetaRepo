@@ -8,8 +8,8 @@ body {
     font-style: normal;
 }
 
-#sigmaChiLogoImage {
-    width: 20%;
+#sigmaChiLogoImage, #navAnchor {
+    width: 40%;
     height: 20%;
 }
 
@@ -17,6 +17,13 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.centerDiv {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 html {
@@ -67,7 +74,9 @@ Navbar
           font-weight: 500;
         }
 
-
+        #navAnchor {
+          max-width: 300px;
+        }
 
 
 
@@ -371,6 +380,7 @@ ul{
 }
 
 
+
 /* 
 #####################################################################################
 Login Page
@@ -504,4 +514,8 @@ tr:nth-child(even) {
 #client-calendar {
   font-size: larger;
   width: 100%;
+}
+
+.scroll {
+  overflow: scroll;
 }

@@ -1,6 +1,7 @@
 import NavBar from './Navbar'
 import { useEffect, useState } from 'react'
 
+
 function Calendar()
 {
     const [calendarValues, setCalendarValues] = useState([])
@@ -33,23 +34,24 @@ function Calendar()
         <>
             <NavBar title="Calendar"></NavBar>
 
-            <table id="client-calendar">
-                <thead>
-                <tr>
-                    <th>Event</th>
-                    <th>Location</th>
-                    <th>Date</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
-                    <th>Timezone</th>
-                </tr>
-                </thead>
+            <div className='scroll'>
+                <table id="client-calendar">
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Location</th>
+                        <th>Date</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Timezone</th>
+                    </tr>
+                    </thead>
 
-                <tbody>
-                {calendarListItems}
-                </tbody>
-            </table>
-
+                    <tbody>
+                    {calendarListItems}
+                    </tbody>
+                </table>
+            </div>
         </>
     )
 }

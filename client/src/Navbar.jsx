@@ -4,7 +4,9 @@ function NavBar(props) {
 
     return (
         <div className="nav-bar fade-in">
-          <img src="/images/SigmaChi-ExpectMore-1024x342.png" alt="Sigma Chi Logo" id="sigmaChiLogoImage" />
+          <a href="/" id="navAnchor">
+            <img src="/images/SigmaChi-ExpectMore-1024x342.png" alt="Sigma Chi Logo" id="sigmaChiLogoImage" />
+          </a>
           <u><div id="pageHeader" className="center">{title}</div></u>
           <div className="nav-links">
             <a href="/">Home</a>

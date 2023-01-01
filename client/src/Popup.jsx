@@ -3,9 +3,6 @@ import axios from 'axios'
 import "./index.css"
 
 
-
-
-
 async function sha256(message) {
     // encode as UTF-8
     const msgBuffer = new TextEncoder().encode(message);                    

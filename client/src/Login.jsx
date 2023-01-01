@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import Dashboard from './Dashboard'
 import './index.css'
-import { useEffect } from 'react';
-
 
 
 function Login () {

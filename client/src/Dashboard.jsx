@@ -3,6 +3,7 @@ import { useEffect, useState, React } from 'react'
 import './index.css';
 import Popup from "./Popup"
 import axios from 'axios';
+import FooterSection from './Footer'
 
 
 /* 
@@ -120,25 +121,28 @@ function CalendarSystem(){
 
 
 
-        <div id="calendarValues">
+        <div id="calendarValues" className='scroll'>
             <h1>Current Values:</h1>
 
-            <table>
-            <thead>
-              <tr>
-                <th>Event</th>
-                <th>Location</th>
-                <th>Date</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Timezone</th>
-              </tr>
-            </thead>
+            <div className='scroll'>
+              <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Location</th>
+                  <th>Date</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Timezone</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              {calendarListItems}
-            </tbody>
-          </table>
+              <tbody>
+                {calendarListItems}
+              </tbody>
+            </table>
+          </div>
 
         </div>
     </div>
@@ -221,20 +225,22 @@ function Dashboard() {
         <h1>User Management:</h1>
         <button id="newUserButton" onClick={() => {setButtonState(!newUserButtonIsClicked)}}>New User</button>
 
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
+          <div className='scroll'>
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              {listItems}
-            </tbody>
-          </table>
+              <tbody>
+                {listItems}
+              </tbody>
+            </table>
+          </div>
 
           {newUserButtonIsClicked ? <Popup getUsers={getUsers} setButtonState={setButtonState} newUserButtonIsClicked={newUserButtonIsClicked}></Popup> : ""}
       </div>
@@ -257,6 +263,7 @@ Dashboard layout
       <br />
       <CalendarSystem />
       <br />
+      <FooterSection />
     </>
   );
 }

@@ -1,15 +1,13 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {
     BrowserRouter as Router,
     Routes,
-    Route,
-    Navigate
+    Route
 } from 'react-router-dom'
 import './index.css'
 import Homepage from './Homepage'
 import Calendar from './Calendar'
 import Form from './footer_pages/form'
-import Donate from './footer_pages/donate'
 import Login from './Login'
 
 
@@ -24,7 +22,6 @@ function App()
                 <Route path="/calendar" exact element={<Calendar/>}></Route>
                 <Route path="/login" exact element={<Login/>}></Route>
                 <Route path="/form" exact element={<Form/>}></Route>
-                <Route path="/donate" exact element={<Donate/>}></Route>
             </Routes>
         </Router>
         
