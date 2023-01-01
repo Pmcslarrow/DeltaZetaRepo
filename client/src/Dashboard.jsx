@@ -121,7 +121,7 @@ function CalendarSystem(){
 
 
 
-        <div id="calendarValues" className='scroll'>
+        <div id="calendarValues">
             <h1>Current Values:</h1>
 
             <div className='scroll'>

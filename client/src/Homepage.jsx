@@ -1,5 +1,6 @@
 import './index.css'
 import NavBar from './Navbar'
+import FooterSection from './Footer'
 
 
 function FriendshipJusticeLearning()
@@ -166,6 +167,7 @@ function Homepage()
                 <div className='parallax_2'></div>   
             <ValueSection/>
                 <div className='parallax_3'></div>
+            <FooterSection />
         </>
     )
 }

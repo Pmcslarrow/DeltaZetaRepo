@@ -517,5 +517,8 @@ tr:nth-child(even) {
 }
 
 .scroll {
-  overflow: scroll;
+  overflow-y: scroll;
+  height: 500px;
+  max-height: 550px;
+
 }
